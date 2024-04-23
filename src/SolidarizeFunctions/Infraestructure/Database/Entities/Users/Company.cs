@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Solidarize.Domain.Enums;
 using Solidarize.Infraestructure.Database.Entities.Chat;
 
 namespace Solidarize.Infraestructure.Database.Entities.Users
@@ -10,7 +11,7 @@ namespace Solidarize.Infraestructure.Database.Entities.Users
         public string Images { get; set; }
         public string Icon { get; set; }
         public string Description { get; set; }
-        public int LegalNature { get; set; }
+        public LegalNature LegalNature { get; set; }
         public string LocationX { get; set; }
         public string LocationY { get; set; }
         public bool Banned { get; set; }

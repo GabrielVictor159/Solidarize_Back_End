@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Solidarize.Api.UseCases.RegisterCompany;
+namespace Solidarize.Api.UseCases.Users.RequestRegisterCompany;
 
-public class RegisterCompanyRequest
+public class RequestRegisterCompanyRequest
 {
     [Required]
     public string CompanyName {get; set;}
