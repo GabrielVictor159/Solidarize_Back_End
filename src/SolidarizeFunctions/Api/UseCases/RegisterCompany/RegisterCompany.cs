@@ -9,28 +9,35 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Solidarize.Api.Validator.Http;
 using Solidarize.Api.UseCases.RegisterCompany;
+using Solidarize.Application.Interfaces.Repositories.Chat;
+using Solidarize.Domain.Models.Chat;
 
 namespace Solidarize
 {
     public class RegisterCompany
     {
         private HttpRequestValidator httpRequestValidator {get;set;}
-        public RegisterCompany(HttpRequestValidator validator)
+        private readonly IChatRepository chatRepository;
+        public RegisterCompany(HttpRequestValidator validator, IChatRepository chatRepository)
         {
             validator.AddValidator(new BodyValidator<RegisterCompanyRequest>());
             this.httpRequestValidator = validator;
+            this.chatRepository = chatRepository;
         }
 
         [FunctionName("RegisterCompany")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get","post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function,"post", Route = null)] HttpRequest req,
             ILogger log)
         {
+            var teste  = new Chat(Guid.NewGuid(), DateTime.Now, "");
+            chatRepository.Add(teste);
             var validateHttp = await httpRequestValidator.Validate(req);
             if(!validateHttp.Item1)
             {
                 return validateHttp.Item2;
             }
+            
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];

@@ -4,13 +4,21 @@
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="AutoMapper.Collection" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.2.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="7.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
   </ItemGroup>

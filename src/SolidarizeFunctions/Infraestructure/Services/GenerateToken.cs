@@ -3,11 +3,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-namespace Solidarize.Api.Authorization;
+using Solidarize.Application.Interfaces;
+using Solidarize.Application.Interfaces.Services;
+namespace Solidarize.Infraestructure.Services;
 
-public static class GenerateToken
+public class TokenService : ITokenService
 {
-    public static string Generate(string rule)
+    public string Generate(string rule)
     {
         var Secret = Environment.GetEnvironmentVariable("JWTSECRET");
         if (Secret == null)
