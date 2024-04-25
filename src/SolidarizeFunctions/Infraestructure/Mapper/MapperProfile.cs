@@ -1,5 +1,6 @@
 using AutoMapper;
 using Solidarize.Domain.Models.Chat;
+using Solidarize.Domain.Models.Logs;
 using Solidarize.Domain.Models.Users;
 
 namespace Solidarize.Infraestructure.Mapper;
@@ -17,5 +18,6 @@ public class MapperProfile : Profile
         CreateMap<Chat, Database.Entities.Chat.Chat>().ReverseMap();
         CreateMap<Message, Database.Entities.Chat.Message>().ReverseMap();
         CreateMap<RequestCompany, Database.Entities.Users.RequestCompany>().ReverseMap();
+        CreateMap<Log, Database.Entities.Logs.Log>().ReverseMap();
     }
 }

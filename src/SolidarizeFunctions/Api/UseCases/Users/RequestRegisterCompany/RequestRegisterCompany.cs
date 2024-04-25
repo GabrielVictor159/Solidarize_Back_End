@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Solidarize.Api.Validator.Http;
 using Solidarize.Application.Interfaces.Repositories.Chat;
 using Solidarize.Domain.Models.Chat;
+using Solidarize.Api.Filters;
+using Solidarize.Application.UseCases.Users.RequestRegisterCompany;
 
 namespace Solidarize.Api.UseCases.Users.RequestRegisterCompany;
 
@@ -17,13 +19,19 @@ public class RequestRegisterCompany
 {
     private HttpRequestValidator httpRequestValidator { get; set; }
     private readonly RequestRegisterCompanyPresenter presenter;
+    private readonly NotificationMiddleware middleware;
+    private readonly IRequestRegisterCompanyUseCase requestRegisterCompanyUseCase;
     public RequestRegisterCompany
     (HttpRequestValidator validator,
-    RequestRegisterCompanyPresenter RequestRegisterCompanyPresenter)
+    RequestRegisterCompanyPresenter RequestRegisterCompanyPresenter,
+    NotificationMiddleware notificationMiddleware,
+    IRequestRegisterCompanyUseCase requestRegisterCompanyUseCase)
     {
         validator.AddValidator(new BodyValidator<RequestRegisterCompanyRequest>());
         this.httpRequestValidator = validator;
         this.presenter = RequestRegisterCompanyPresenter;
+        this.middleware = notificationMiddleware;
+        this.requestRegisterCompanyUseCase = requestRegisterCompanyUseCase;
     }
 
     [FunctionName("RequestRegisterCompany")]
@@ -31,25 +39,21 @@ public class RequestRegisterCompany
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
         ILogger log)
     {
-        var validateHttp = await httpRequestValidator.Validate(req);
-        if (!validateHttp.Item1)
+
+        return await middleware.InvokeAsync(req, log, httpRequestValidator, async () =>
         {
-            return validateHttp.Item2;
-        }
-
-        log.LogInformation("C# HTTP trigger function processed a request.");
-
-        string name = req.Query["name"];
-
-        string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-        dynamic data = JsonConvert.DeserializeObject(requestBody);
-        name = name ?? data?.name;
-
-        string responseMessage = string.IsNullOrEmpty(name)
-            ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-            : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-        return new OkObjectResult(responseMessage);
+            req.Body.Position = 0;
+            var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            RequestRegisterCompanyRequest body = new();
+            
+            try
+            {
+                body = JsonConvert.DeserializeObject<RequestRegisterCompanyRequest>(requestBody!)!;
+            }
+            catch { }
+            requestRegisterCompanyUseCase.Execute(new(body.CompanyName, body.Description, body.LegalNature, body.LocationX, body.LocationY, body.CNPJ, body.Address, body.Email, body.Password, body.Telefone));
+            return presenter.ViewModel;
+        });
     }
 }
 

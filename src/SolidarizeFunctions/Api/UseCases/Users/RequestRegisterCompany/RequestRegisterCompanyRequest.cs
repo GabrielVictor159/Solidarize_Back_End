@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Solidarize.Domain.Enums;
 
 namespace Solidarize.Api.UseCases.Users.RequestRegisterCompany;
 
@@ -9,7 +10,7 @@ public class RequestRegisterCompanyRequest
     [Required]
     public string Description {get; set;}
     [Required]
-    public string LegalNature {get;set;}
+    public LegalNature LegalNature {get;set;}
     [Required]
     public string LocationX {get;set;}
     [Required]

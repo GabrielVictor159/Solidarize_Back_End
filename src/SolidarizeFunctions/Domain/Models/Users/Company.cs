@@ -1,11 +1,13 @@
 using Solidarize.Domain.Enums;
+using Solidarize.Domain.Validator.Users;
 
 namespace Solidarize.Domain.Models.Users;
 
-public class Company
+public class Company : Entity<Company, CompanyValidator>
 {
     public Company(string companyName, string images, string icon, string description, LegalNature legalNature, string locationX, string locationY, bool banned, DateTime? banDate, DateTime? creationDate, DateTime? lastAccessDate, 
     string cnpj, string address, string telefone, string email, Guid id, Guid idpassword, Password password)
+    : base(new CompanyValidator())
     {
         CompanyName = companyName;
         Images = images;

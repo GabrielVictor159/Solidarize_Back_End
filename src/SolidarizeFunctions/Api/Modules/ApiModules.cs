@@ -1,5 +1,6 @@
 
 using Microsoft.Extensions.DependencyInjection;
+using Solidarize.Api.Filters;
 using Solidarize.Api.Interface;
 using Solidarize.Api.UseCases.Users.RequestRegisterCompany;
 using Solidarize.Api.Validator.Http;
@@ -17,6 +18,7 @@ public class ApiModule : Module
         services.AddSingleton(new HttpRequestValidator());
         services.AddSingleton<IOutputPort<Application.Bundaries.RequestRegisterCompany.RequestRegisterCompanyResponse>,RequestRegisterCompanyPresenter>();
         services.AddSingleton(new RequestRegisterCompanyPresenter());
+        services.AddTransient<NotificationMiddleware>();
     }
 
 }

@@ -1,8 +1,12 @@
+
+using Solidarize.Domain.Validator.Users;
+
 namespace Solidarize.Domain.Models.Users;
 
-public class Password
+public class Password : Entity<Password, PasswordValidator>
 {
     public Password(Guid id, DateTime lastDateModified, string latestPasswords, string encryption, int passwordSize, int complexedSize, string passwordValue)
+        : base(new PasswordValidator())
     {
         Id = id;
         LastDateModified = lastDateModified;

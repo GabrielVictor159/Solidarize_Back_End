@@ -20,10 +20,11 @@ public class HttpRequestValidator
             var testeObject = await validator.Validate(request);
             if (!testeObject.Item1)
             {
+                validators.Clear();
                 return (false, testeObject.Item2);
             }
         }
-
+        validators.Clear();
         return (true,null);
     }
 }

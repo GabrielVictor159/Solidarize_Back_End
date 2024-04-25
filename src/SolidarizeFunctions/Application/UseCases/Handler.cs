@@ -8,5 +8,5 @@ public abstract class Handler<T>
         this.sucessor = sucessor;
         return this;
     }
-    public abstract Task ProcessRequest(T request);
+    public abstract void ProcessRequest(T request);
 }

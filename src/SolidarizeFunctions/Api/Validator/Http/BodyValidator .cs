@@ -39,7 +39,7 @@ public class BodyValidator<T> : IHttpRequestValidator
     catch (Exception e)
     {
         Console.WriteLine(e.Message);
-        return (false, new InternalServerErrorResult());
+        return (false, new BadRequestObjectResult(e.Message));
     }
 }
 

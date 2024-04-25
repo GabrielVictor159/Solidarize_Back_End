@@ -1,8 +1,11 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Solidarize.Infraestructure.Database.Entities;
 using Solidarize.Infraestructure.Database.Entities.Chat;
+using Solidarize.Infraestructure.Database.Entities.Logs;
 using Solidarize.Infraestructure.Database.Entities.Users;
 using Solidarize.Infraestructure.Database.Map.Chat;
+using Solidarize.Infraestructure.Database.Map.Logs;
 using Solidarize.Infraestructure.Database.Map.Users;
 
 namespace Solidarize.Infraestructure.Database
@@ -23,12 +26,13 @@ namespace Solidarize.Infraestructure.Database
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Password> Passwords { get; set; }
         public virtual DbSet<RequestCompany> RequestCompanies { get; set; }
+        public virtual DbSet<Log> Logs {get;set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("DBCONN"));
+                optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("DBCONN")!);
             }
         }
 
@@ -39,6 +43,7 @@ namespace Solidarize.Infraestructure.Database
             modelBuilder.ApplyConfiguration(new MessageMap());
             modelBuilder.ApplyConfiguration(new PasswordMap());
             modelBuilder.ApplyConfiguration(new RequestCompanyMap());
+            modelBuilder.ApplyConfiguration(new LogMap());
             
             OnModelCreatingPartial(modelBuilder);
         }

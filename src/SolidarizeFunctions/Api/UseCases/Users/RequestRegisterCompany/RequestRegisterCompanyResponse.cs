@@ -4,9 +4,12 @@ public class RequestRegisterCompanyResponse
 {
     public RequestRegisterCompanyResponse(Application.Bundaries.RequestRegisterCompany.RequestRegisterCompanyResponse bundaries)
     {
-        Id = bundaries.Id;
+        if(bundaries.Id!= Guid.Empty)
+        {
+            Sucess = false;
+        }
     }
 
-    public Guid Id {get; private set;}
+    public bool Sucess {get; private set;} = true;
 
 }

@@ -15,6 +15,7 @@ public class InfraestructureModule : Module
 {
     public override void Configure(IServiceCollection services)
     {
+        services.AddSingleton<INotificationService, NotificationService>();
         DataAccess(services);
         Mapper(services);
     }
