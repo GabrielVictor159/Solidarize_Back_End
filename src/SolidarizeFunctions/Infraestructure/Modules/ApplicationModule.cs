@@ -28,5 +28,6 @@ public class ApplicationModule : Module
         services.AddScoped<IMessageRepository, MessageRepository>();
         services.AddScoped<ICompanyRepository, CompanyRepository>();
         services.AddScoped<IPasswordRepository, PasswordRepository>();
+        services.AddScoped<IRequestCompanyRepository, RequestCompanyRepository>();
     }
 }

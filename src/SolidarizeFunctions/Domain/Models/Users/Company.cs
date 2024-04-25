@@ -4,8 +4,8 @@ namespace Solidarize.Domain.Models.Users;
 
 public class Company
 {
-    public Company(string companyName, string images, string icon, string description, LegalNature legalNature, string locationX, string locationY, bool banned, DateTime? banDate, DateTime? creationDate, DateTime? lastAccessDate, string cnpj, string address, 
-    string telefone, string email, Guid id, Guid idpassword, Password password)
+    public Company(string companyName, string images, string icon, string description, LegalNature legalNature, string locationX, string locationY, bool banned, DateTime? banDate, DateTime? creationDate, DateTime? lastAccessDate, 
+    string cnpj, string address, string telefone, string email, Guid id, Guid idpassword, Password password)
     {
         CompanyName = companyName;
         Images = images;

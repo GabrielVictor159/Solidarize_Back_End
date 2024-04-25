@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/dotnet:1-6.0
 
+RUN dotnet tool install --global dotnet-ef --version 6.0.0  
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>

@@ -22,6 +22,7 @@ namespace Solidarize.Infraestructure.Database
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Password> Passwords { get; set; }
+        public virtual DbSet<RequestCompany> RequestCompanies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,7 +38,8 @@ namespace Solidarize.Infraestructure.Database
             modelBuilder.ApplyConfiguration(new CompanyMap());
             modelBuilder.ApplyConfiguration(new MessageMap());
             modelBuilder.ApplyConfiguration(new PasswordMap());
-
+            modelBuilder.ApplyConfiguration(new RequestCompanyMap());
+            
             OnModelCreatingPartial(modelBuilder);
         }
 

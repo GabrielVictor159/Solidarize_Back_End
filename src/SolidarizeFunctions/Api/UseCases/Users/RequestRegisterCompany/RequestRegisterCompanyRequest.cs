@@ -6,8 +6,6 @@ public class RequestRegisterCompanyRequest
 {
     [Required]
     public string CompanyName {get; set;}
-    public List<string> Images {get; set;}
-    public string Icon {get; set;}
     [Required]
     public string Description {get; set;}
     [Required]
