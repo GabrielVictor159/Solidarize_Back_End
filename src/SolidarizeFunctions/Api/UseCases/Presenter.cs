@@ -5,7 +5,7 @@ namespace Solidarize.Api.UseCases;
 
 public abstract class Presenter<Request, Response> : IOutputPort<Request>
 {
-    public IActionResult ViewModel { get; private set; } = new ObjectResult(new { StatusCode = 500 });
+    public IActionResult ViewModel { get; set; } = new ObjectResult(new { StatusCode = 500 });
 
     public void Error(string message)
     {

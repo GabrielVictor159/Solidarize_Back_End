@@ -4,7 +4,7 @@ public class RequestRegisterCompanyResponse
 {
     public RequestRegisterCompanyResponse(Application.Bundaries.RequestRegisterCompany.RequestRegisterCompanyResponse bundaries)
     {
-        if(bundaries.Id!= Guid.Empty)
+        if(bundaries.Id== Guid.Empty)
         {
             Sucess = false;
         }
