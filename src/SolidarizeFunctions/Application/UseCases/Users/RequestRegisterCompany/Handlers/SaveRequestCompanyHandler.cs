@@ -13,7 +13,7 @@ public class SaveRequestCompanyHandler : Handler<RequestRegisterCompanyRequest>
 
     public override void ProcessRequest(RequestRegisterCompanyRequest request)
     {
-        request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType}");
+        request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType().FullName}");
         
         requestCompanyRepository.Add(request.RequestCompany!);
 

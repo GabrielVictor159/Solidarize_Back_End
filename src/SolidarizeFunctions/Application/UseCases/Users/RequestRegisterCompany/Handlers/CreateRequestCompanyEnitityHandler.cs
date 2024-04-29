@@ -15,7 +15,7 @@ public class CreateRequestCompanyEnitityHandler : Handler<RequestRegisterCompany
 
     public override void ProcessRequest(RequestRegisterCompanyRequest request)
     {
-        request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType}");
+        request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType().FullName}");
         
         request.Company = new Company(request.CompanyName, "","",request.Description, request.LegalNature, request.LocationX, request.LocationY, false, null, DateTime.Now, DateTime.Now, request.CNPJ,request.Address,request.Telefone, 
         request.Email, Guid.NewGuid(), request.PasswordObject!.Id, request.PasswordObject);

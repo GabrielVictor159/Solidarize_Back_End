@@ -16,7 +16,7 @@ public class CreatePasswordEntityHandler : Handler<RequestRegisterCompanyRequest
 
     public override void ProcessRequest(RequestRegisterCompanyRequest request)
     {
-        request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType}");
+        request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType().FullName}");
         
         var EncryptPassword = request.Password.PasswordEncryption();
         request.PasswordObject = new Password(Guid.NewGuid(), DateTime.Now, "[]",EncryptPassword.Method, request.Password.Length,request.Password.PasswordComplexityIndex(),EncryptPassword.Result);

@@ -37,7 +37,7 @@ public class RequestRegisterCompany
 
     [FunctionName("RequestRegisterCompany")]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
         ILogger log)
     {
 
