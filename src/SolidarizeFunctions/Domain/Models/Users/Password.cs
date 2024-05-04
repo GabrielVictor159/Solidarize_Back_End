@@ -25,5 +25,5 @@ public class Password : Entity<Password, PasswordValidator>
     public int ComplexedSize { get; private set; }
     public string PasswordValue { get; private set; }
 
-    public ICollection<Company> Companies { get; set; }
+    public ICollection<Company>? Companies { get; set; }
 }

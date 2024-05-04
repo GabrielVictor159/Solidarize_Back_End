@@ -11,7 +11,6 @@ public class CompanyMap : IEntityTypeConfiguration<Company>
     {
         builder.ToTable("Company", "Users");
         builder.HasIndex(e => e.Email).IsUnique(true);
-        builder.HasIndex(e => e.CompanyName).IsUnique(true);
         builder.Property(e => e.Id).ValueGeneratedNever();
         builder.Property(e => e.Address).IsRequired().HasColumnType("character varying");
         builder.Property(e => e.BanDate).HasColumnType("timestamp without time zone");

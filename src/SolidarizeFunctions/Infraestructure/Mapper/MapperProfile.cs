@@ -19,5 +19,6 @@ public class MapperProfile : Profile
         CreateMap<Message, Database.Entities.Chat.Message>().ReverseMap();
         CreateMap<RequestCompany, Database.Entities.Users.RequestCompany>().ReverseMap();
         CreateMap<Log, Database.Entities.Logs.Log>().ReverseMap();
+        CreateMap<RequestRecoverPassword, Database.Entities.Users.RequestRecoverPassword>().ReverseMap();
     }
 }

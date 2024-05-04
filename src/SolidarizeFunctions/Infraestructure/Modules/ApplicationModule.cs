@@ -3,10 +3,13 @@ using Solidarize.Application.Interfaces.Repositories.Chat;
 using Solidarize.Application.Interfaces.Repositories.Logs;
 using Solidarize.Application.Interfaces.Repositories.Users;
 using Solidarize.Application.Interfaces.Services;
+using Solidarize.Application.UseCases.Users.ConfirmRegisterCompany.Modules;
+using Solidarize.Application.UseCases.Users.RecoverPassword.Modules;
 using Solidarize.Application.UseCases.Users.RequestRegisterCompany;
 using Solidarize.Application.UseCases.Users.RequestRegisterCompany.Modules;
 using Solidarize.Domain.Modules;
 using Solidarize.Helpers;
+using Solidarize.Infraestructure.Database.Map.Users;
 using Solidarize.Infraestructure.Database.Repositories.Chat;
 using Solidarize.Infraestructure.Database.Repositories.Logs;
 using Solidarize.Infraestructure.Database.Repositories.Users;
@@ -25,6 +28,8 @@ public class ApplicationModule : Module
     private void AddUseCases(IServiceCollection services)
     {
         new RequestRegisterCompanyModule().Configure(services);
+        new ConfirmRegisterCompanyModule().Configure(services);
+        new RecoverPasswordModule().Configure(services);
     }
     private void AddServices(IServiceCollection services) 
     {
@@ -38,5 +43,6 @@ public class ApplicationModule : Module
         services.AddSingleton<IPasswordRepository, PasswordRepository>();
         services.AddSingleton<IRequestCompanyRepository, RequestCompanyRepository>();
         services.AddSingleton<ILogRepository, LogRepository>();
+        services.AddSingleton<IRequestRecoverPasswordRepository, RequestRecoverPasswordRepository>();
     }
 }

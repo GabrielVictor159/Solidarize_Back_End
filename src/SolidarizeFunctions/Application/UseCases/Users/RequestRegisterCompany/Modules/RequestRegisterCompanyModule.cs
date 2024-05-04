@@ -14,5 +14,6 @@ public class RequestRegisterCompanyModule : Module
         services.AddSingleton<CreateRequestCompanyEnitityHandler>();
         services.AddSingleton<SaveRequestCompanyHandler>();
         services.AddSingleton<SendRequestCompanyEmailHandler>();
+        services.AddSingleton<SearchCompanyHandler>();
     }
 }

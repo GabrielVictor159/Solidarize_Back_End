@@ -24,6 +24,7 @@ public class CreatePasswordEntityHandler : Handler<RequestRegisterCompanyRequest
         if(!request.PasswordObject.IsValid)
         {
             notificationService.AddNotifications(request.PasswordObject.ValidationResult);
+            return;
         }
 
         sucessor?.ProcessRequest(request);

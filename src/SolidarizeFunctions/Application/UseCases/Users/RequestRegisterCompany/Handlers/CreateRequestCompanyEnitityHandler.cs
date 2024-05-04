@@ -25,6 +25,7 @@ public class CreateRequestCompanyEnitityHandler : Handler<RequestRegisterCompany
         if(!request.Company.IsValid)
         {
             notificationService.AddNotifications(request.Company.ValidationResult);
+            return;
         }
 
         sucessor?.ProcessRequest(request);

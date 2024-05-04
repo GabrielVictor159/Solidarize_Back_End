@@ -12,8 +12,8 @@ public class ConfirmRegisterCompanyRequest
     }
 
     public Guid IdRequest {get; private set;}
-    public RequestCompany? requestCompany {get; set;}
-    public Password? password {get; set;}
+    public RequestCompany? RequestCompany {get; set;}
+    public Password? Password {get; set;}
     public Company? Company {get; set;}
 
     public List<Log> Logs { get; set; } = new();

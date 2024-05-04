@@ -32,7 +32,9 @@ public class NotificationMiddleware
         if (_notifications.HasNotifications)
         {
             var obj = JsonConvert.SerializeObject(_notifications.Notifications);
-            return new BadRequestObjectResult(obj);
+            var badRequest = new BadRequestObjectResult(obj);
+            _notifications.Notifications.Clear();
+            return badRequest;
         }
 
         return result;

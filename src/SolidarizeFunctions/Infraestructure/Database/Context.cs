@@ -27,6 +27,7 @@ namespace Solidarize.Infraestructure.Database
         public virtual DbSet<Password> Passwords { get; set; }
         public virtual DbSet<RequestCompany> RequestCompanies { get; set; }
         public virtual DbSet<Log> Logs {get;set;}
+        public virtual DbSet<RequestRecoverPassword> RequestRecoverPasswords { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,6 +45,7 @@ namespace Solidarize.Infraestructure.Database
             modelBuilder.ApplyConfiguration(new PasswordMap());
             modelBuilder.ApplyConfiguration(new RequestCompanyMap());
             modelBuilder.ApplyConfiguration(new LogMap());
+            modelBuilder.ApplyConfiguration(new RequestRecoverPasswordMap());
             
             OnModelCreatingPartial(modelBuilder);
         }

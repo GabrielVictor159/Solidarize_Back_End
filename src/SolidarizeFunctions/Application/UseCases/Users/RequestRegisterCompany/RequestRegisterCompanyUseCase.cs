@@ -17,14 +17,16 @@ public class RequestRegisterCompanyUseCase : IRequestRegisterCompanyUseCase
     CreatePasswordEntityHandler createPasswordEntityHandler,
     CreateRequestCompanyEnitityHandler createRequestCompanyEnitityHandler,
     SendRequestCompanyEmailHandler sendRequestCompanyEmailHandler,
-    SaveRequestCompanyHandler saveRequestCompanyHandler)
+    SaveRequestCompanyHandler saveRequestCompanyHandler,
+    SearchCompanyHandler searchCompanyHandler)
     {
         this.logRepository = logRepository;
 
         createPasswordEntityHandler
         .SetSucessor(createRequestCompanyEnitityHandler
+        .SetSucessor(searchCompanyHandler
         .SetSucessor(sendRequestCompanyEmailHandler
-        .SetSucessor(saveRequestCompanyHandler)));
+        .SetSucessor(saveRequestCompanyHandler))));
 
         this.createPasswordEntityHandler = createPasswordEntityHandler;
         this.outputPort = outputPort;
