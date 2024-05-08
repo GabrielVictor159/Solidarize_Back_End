@@ -8,7 +8,7 @@ public class RequestRecoverPasswordRepository
     : CRUDRepositoryPattern<Domain.Models.Users.RequestRecoverPassword, Entities.Users.RequestRecoverPassword>,
     IRequestRecoverPasswordRepository
 {
-    public RequestRecoverPasswordRepository(Context context, IMapper mapper) : base(context, mapper)
+    public RequestRecoverPasswordRepository(IMapper mapper) : base(mapper)
     {
     }
 }

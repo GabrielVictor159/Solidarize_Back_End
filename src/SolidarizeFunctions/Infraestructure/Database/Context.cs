@@ -35,6 +35,10 @@ namespace Solidarize.Infraestructure.Database
             {
                 optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("DBCONN")!);
             }
+            else
+            {
+                optionsBuilder.UseInMemoryDatabase("SolidarizeDb");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

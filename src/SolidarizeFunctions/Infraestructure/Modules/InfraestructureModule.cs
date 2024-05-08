@@ -22,7 +22,7 @@ public class InfraestructureModule : Module
     private void DataAccess(IServiceCollection services)
     {
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-        services.AddSingleton(new Context());
+
     }
     private void Mapper(IServiceCollection services)
     {

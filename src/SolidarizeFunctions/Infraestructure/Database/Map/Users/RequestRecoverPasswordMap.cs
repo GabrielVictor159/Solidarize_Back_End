@@ -11,6 +11,7 @@ public class RequestRecoverPasswordMap: IEntityTypeConfiguration<RequestRecoverP
         entity.ToTable("RequestRecoverPassword", "Users");
 
         entity.Property(e => e.Id).ValueGeneratedNever();
+        entity.Property(e => e.Body).IsRequired(true);
 
         entity.Property(e => e.CreationDate).HasColumnType("timestamp without time zone");
     }

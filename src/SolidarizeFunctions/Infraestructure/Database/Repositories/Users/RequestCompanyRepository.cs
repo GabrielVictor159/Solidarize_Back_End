@@ -8,7 +8,7 @@ public class RequestCompanyRepository
     : CRUDRepositoryPattern<Domain.Models.Users.RequestCompany, Entities.Users.RequestCompany>,
     IRequestCompanyRepository
 {
-    public RequestCompanyRepository(Context context, IMapper mapper) : base(context, mapper)
+    public RequestCompanyRepository(IMapper mapper) : base( mapper)
     {
     }
 }

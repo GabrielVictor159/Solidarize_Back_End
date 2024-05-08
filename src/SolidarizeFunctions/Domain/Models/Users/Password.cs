@@ -1,4 +1,5 @@
 
+using Newtonsoft.Json;
 using Solidarize.Domain.Validator.Users;
 
 namespace Solidarize.Domain.Models.Users;
@@ -26,4 +27,16 @@ public class Password : Entity<Password, PasswordValidator>
     public string PasswordValue { get; private set; }
 
     public ICollection<Company>? Companies { get; set; }
+
+    public void SetPasswordValue(string NewPassword, string Encryption, int PasswordSize, int ComplexedSize)
+    {
+        var latestPasswordsArray = JsonConvert.DeserializeObject<List<string>>(LatestPasswords);
+        latestPasswordsArray!.Add(this.PasswordValue);
+        this.PasswordValue = NewPassword;
+        this.Encryption = Encryption;
+        this.PasswordSize = PasswordSize;
+        this.ComplexedSize = ComplexedSize;
+        this.LastDateModified = DateTime.Now;
+        this.LatestPasswords = JsonConvert.SerializeObject(latestPasswordsArray);
+    }
 }

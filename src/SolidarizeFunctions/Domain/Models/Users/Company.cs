@@ -47,5 +47,5 @@ public class Company : Entity<Company, CompanyValidator>
     public Guid Id { get; private set; }
     public Guid Idpassword { get; private set; }
 
-    public Password Password { get; private set; }
+    public Password Password { get; set; }
 }

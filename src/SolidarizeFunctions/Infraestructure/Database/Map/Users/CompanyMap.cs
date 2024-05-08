@@ -23,6 +23,7 @@ public class CompanyMap : IEntityTypeConfiguration<Company>
         builder.Property(e => e.LocationX).IsRequired().HasColumnType("character varying");
         builder.Property(e => e.LocationY).IsRequired().HasColumnType("character varying");
         builder.Property(e => e.Telefone).IsRequired().HasColumnType("character varying");
+        builder.Property(e => e.LegalNature).HasColumnType("character varying");
         builder.HasOne(d => d.Password)
             .WithMany(p => p.Companies)
             .HasForeignKey(d => d.Idpassword)

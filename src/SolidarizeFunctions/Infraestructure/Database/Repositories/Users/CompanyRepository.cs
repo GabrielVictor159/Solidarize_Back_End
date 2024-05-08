@@ -8,7 +8,7 @@ public class CompanyRepository
     : CRUDRepositoryPattern<Domain.Models.Users.Company, Entities.Users.Company>,
     ICompanyRepository
 {
-    public CompanyRepository(Context context, IMapper mapper) : base(context, mapper)
+    public CompanyRepository(IMapper mapper) : base(mapper)
     {
     }
 }

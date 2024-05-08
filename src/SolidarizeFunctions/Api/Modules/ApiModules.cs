@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Solidarize.Api.Filters;
 using Solidarize.Api.Interface;
+using Solidarize.Api.UseCases.Users.ConfirmRecoverPassword;
 using Solidarize.Api.UseCases.Users.ConfirmRegisterCompany;
 using Solidarize.Api.UseCases.Users.RecoverPassword;
 using Solidarize.Api.UseCases.Users.RequestRegisterCompany;
@@ -22,6 +23,7 @@ public class ApiModule : Module
         services.AddSingleton<IOutputPort<Application.Bundaries.RequestRegisterCompany.RequestRegisterCompanyResponse>,RequestRegisterCompanyPresenter>();
         services.AddSingleton<IOutputPort<Application.Bundaries.ConfirmRegisterCompany.ConfirmRegisterCompanyResponse>,ConfirmRegisterCompanyPresenter>();
         services.AddSingleton<IOutputPort<Application.Bundaries.RecoverPassword.RecoverPasswordResponse>,RecoverPasswordPresenter>();
+        services.AddSingleton<IOutputPort<Application.Bundaries.ConfirmRecoverPassword.ConfirmRecoverPasswordResponse>,ConfirmRecoverPasswordPresenter>();
     }
 
 }

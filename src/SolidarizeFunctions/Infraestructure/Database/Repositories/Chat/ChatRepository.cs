@@ -8,7 +8,7 @@ public class ChatRepository
     : CRUDRepositoryPattern<Domain.Models.Chat.Chat, Entities.Chat.Chat>,
     IChatRepository
 {
-    public ChatRepository(Context context, IMapper mapper) : base(context, mapper)
+    public ChatRepository( IMapper mapper) : base( mapper)
     {
     }
 }

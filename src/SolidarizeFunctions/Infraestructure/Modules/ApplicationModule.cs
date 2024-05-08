@@ -3,6 +3,7 @@ using Solidarize.Application.Interfaces.Repositories.Chat;
 using Solidarize.Application.Interfaces.Repositories.Logs;
 using Solidarize.Application.Interfaces.Repositories.Users;
 using Solidarize.Application.Interfaces.Services;
+using Solidarize.Application.UseCases.Users.ConfirmRecoverPassword.Modules;
 using Solidarize.Application.UseCases.Users.ConfirmRegisterCompany.Modules;
 using Solidarize.Application.UseCases.Users.RecoverPassword.Modules;
 using Solidarize.Application.UseCases.Users.RequestRegisterCompany;
@@ -30,6 +31,7 @@ public class ApplicationModule : Module
         new RequestRegisterCompanyModule().Configure(services);
         new ConfirmRegisterCompanyModule().Configure(services);
         new RecoverPasswordModule().Configure(services);
+        new ConfirmRecoverPasswordModule().Configure(services);
     }
     private void AddServices(IServiceCollection services) 
     {

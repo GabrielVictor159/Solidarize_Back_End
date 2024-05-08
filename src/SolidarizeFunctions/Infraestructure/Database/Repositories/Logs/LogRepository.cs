@@ -9,7 +9,7 @@ public class LogRepository
     : CRUDRepositoryPattern<Domain.Models.Logs.Log, Entities.Logs.Log>,
     ILogRepository
 {
-    public LogRepository(Context context, IMapper mapper) : base(context, mapper)
+    public LogRepository(IMapper mapper) : base( mapper)
     {
     }
 }

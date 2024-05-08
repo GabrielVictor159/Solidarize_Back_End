@@ -12,6 +12,8 @@ public class LogMap : IEntityTypeConfiguration<Entities.Logs.Log>
         entity.Property(e => e.Id).ValueGeneratedNever();
         entity.Property(e => e.LogDate).HasColumnType("timestamp without time zone");
         entity.Property(e => e.Message).HasColumnType("character varying");
+        entity.Property(e => e.UseCase).HasColumnType("character varying");
+        entity.Property(e => e.Type).HasColumnType("character varying");
     }
 
 }

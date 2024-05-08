@@ -8,7 +8,7 @@ public class PasswordRepository
     : CRUDRepositoryPattern<Domain.Models.Users.Password, Entities.Users.Password>,
     IPasswordRepository
 {
-    public PasswordRepository(Context context, IMapper mapper) : base(context, mapper)
+    public PasswordRepository(IMapper mapper) : base(mapper)
     {
     }
 }
