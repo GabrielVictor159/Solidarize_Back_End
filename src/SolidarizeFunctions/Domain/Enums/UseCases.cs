@@ -13,6 +13,8 @@ public enum UseCases
     [EnumMember(Value ="RecoverPassword")]
     RecoverPassword,
     [EnumMember(Value ="ConfirmRecoverPassword")]
-    ConfirmRecoverPassword
+    ConfirmRecoverPassword,
+    [EnumMember(Value ="Login")]
+    Login
 
 }
