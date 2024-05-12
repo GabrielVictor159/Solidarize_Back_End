@@ -11,17 +11,18 @@ using Solidarize.Api.Validator.Http;
 using Solidarize.Api.Filters;
 using Solidarize.Application.UseCases.Users.ConfirmRegisterCompany;
 using Solidarize.Application.Bundaries;
+using Solidarize.Api.UseCases.Users.ConfirmRegisterCompany;
 namespace SolidarizeFunctions
 {
     public class ConfirmRegisterCompany
     {
         private HttpRequestValidator httpRequestValidator { get; set; }
-        private readonly IOutputPort<Solidarize.Application.Bundaries.ConfirmRegisterCompany.ConfirmRegisterCompanyResponse> presenter;
+        private readonly ConfirmRegisterCompanyPresenter presenter;
         private readonly NotificationMiddleware middleware;
         private readonly IConfirmRegisterCompanyUseCase useCase;
         public ConfirmRegisterCompany
         (HttpRequestValidator validator,
-        IOutputPort<Solidarize.Application.Bundaries.ConfirmRegisterCompany.ConfirmRegisterCompanyResponse> presenter,
+        ConfirmRegisterCompanyPresenter presenter,
         NotificationMiddleware notificationMiddleware,
         IConfirmRegisterCompanyUseCase confirmRegisterCompanyUseCase)
         {

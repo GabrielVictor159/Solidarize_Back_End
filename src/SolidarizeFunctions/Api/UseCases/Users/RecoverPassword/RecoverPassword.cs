@@ -17,13 +17,13 @@ namespace Solidarize.Api.UseCases.Users.RecoverPassword
     public class RecoverPassword
     {
         private HttpRequestValidator httpRequestValidator { get; set; }
-        private readonly IOutputPort<Application.Bundaries.RecoverPassword.RecoverPasswordResponse> presenter;
+        private readonly RecoverPasswordPresenter presenter;
         private readonly NotificationMiddleware middleware;
         private readonly IRecoverPasswordUseCase useCase;
 
         public RecoverPassword
         (HttpRequestValidator httpRequestValidator, 
-        IOutputPort<Application.Bundaries.RecoverPassword.RecoverPasswordResponse> presenter, 
+        RecoverPasswordPresenter presenter, 
         NotificationMiddleware middleware, 
         IRecoverPasswordUseCase useCase)
         {

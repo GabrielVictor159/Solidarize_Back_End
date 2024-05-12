@@ -19,12 +19,12 @@ namespace Solidarize.Api.UseCases.Users.RequestRegisterCompany;
 public class RequestRegisterCompany
 {
     private HttpRequestValidator httpRequestValidator { get; set; }
-    private readonly IOutputPort<Application.Bundaries.RequestRegisterCompany.RequestRegisterCompanyResponse> presenter;
+    private readonly RequestRegisterCompanyPresenter presenter;
     private readonly NotificationMiddleware middleware;
     private readonly IRequestRegisterCompanyUseCase requestRegisterCompanyUseCase;
     public RequestRegisterCompany
     (HttpRequestValidator validator,
-    IOutputPort<Application.Bundaries.RequestRegisterCompany.RequestRegisterCompanyResponse> RequestRegisterCompanyPresenter,
+    RequestRegisterCompanyPresenter RequestRegisterCompanyPresenter,
     NotificationMiddleware notificationMiddleware,
     IRequestRegisterCompanyUseCase requestRegisterCompanyUseCase)
     {

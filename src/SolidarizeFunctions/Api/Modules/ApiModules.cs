@@ -21,11 +21,11 @@ public class ApiModule : Module
     {
         services.AddSingleton(new HttpRequestValidator());
         services.AddScoped<NotificationMiddleware>();
-        services.AddSingleton<IOutputPort<Application.Bundaries.RequestRegisterCompany.RequestRegisterCompanyResponse>,RequestRegisterCompanyPresenter>();
-        services.AddSingleton<IOutputPort<Application.Bundaries.ConfirmRegisterCompany.ConfirmRegisterCompanyResponse>,ConfirmRegisterCompanyPresenter>();
-        services.AddSingleton<IOutputPort<Application.Bundaries.RecoverPassword.RecoverPasswordResponse>,RecoverPasswordPresenter>();
-        services.AddSingleton<IOutputPort<Application.Bundaries.ConfirmRecoverPassword.ConfirmRecoverPasswordResponse>,ConfirmRecoverPasswordPresenter>();
-        services.AddSingleton<IOutputPort<Application.Bundaries.Login.LoginResponse>,LoginPresenter>();
+        services.AddSingleton<RequestRegisterCompanyPresenter>();
+        services.AddSingleton<ConfirmRegisterCompanyPresenter>();
+        services.AddSingleton<RecoverPasswordPresenter>();
+        services.AddSingleton<ConfirmRecoverPasswordPresenter>();
+        services.AddSingleton<LoginPresenter>();
     }
 
 }

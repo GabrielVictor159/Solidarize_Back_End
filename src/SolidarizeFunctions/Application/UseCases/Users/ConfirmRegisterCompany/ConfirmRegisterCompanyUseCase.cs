@@ -1,4 +1,5 @@
 using Azure.Core;
+using Solidarize.Api.UseCases.Users.ConfirmRegisterCompany;
 using Solidarize.Application.Bundaries;
 using Solidarize.Application.Bundaries.ConfirmRegisterCompany;
 using Solidarize.Application.Interfaces.Repositories.Logs;
@@ -10,7 +11,7 @@ public class ConfirmRegisterCompanyUseCase : IConfirmRegisterCompanyUseCase
 {
     private readonly ILogRepository logRepository;
     private readonly SearchRequestCompanyHandler searchRequestCompanyHandler;
-    private readonly IOutputPort<ConfirmRegisterCompanyResponse> outputPort;
+    private readonly ConfirmRegisterCompanyPresenter outputPort;
 
     public ConfirmRegisterCompanyUseCase
     (ILogRepository logRepository, 
@@ -18,7 +19,7 @@ public class ConfirmRegisterCompanyUseCase : IConfirmRegisterCompanyUseCase
     CreateCompanyObjectHandler createCompanyObjectHandler,
     SearchCompanyHandler searchCompanyHandler,
     SaveCompanyHandler saveCompanyHandler, 
-    IOutputPort<ConfirmRegisterCompanyResponse> outputPort)
+    ConfirmRegisterCompanyPresenter outputPort)
     {
         searchRequestCompanyHandler
             .SetSucessor(createCompanyObjectHandler

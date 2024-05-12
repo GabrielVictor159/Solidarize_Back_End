@@ -1,3 +1,4 @@
+using Solidarize.Api.UseCases.Users.RecoverPassword;
 using Solidarize.Application.Bundaries;
 using Solidarize.Application.Bundaries.RecoverPassword;
 using Solidarize.Application.Interfaces.Repositories.Logs;
@@ -9,11 +10,11 @@ public class RecoverPasswordUseCase : IRecoverPasswordUseCase
 {
     private readonly ILogRepository logRepository;
     private readonly SearchCompanyHandler searchCompanyHandler;
-    private readonly IOutputPort<RecoverPasswordResponse> outputPort;
+    private readonly RecoverPasswordPresenter outputPort;
 
     public RecoverPasswordUseCase
     (ILogRepository logRepository, 
-    IOutputPort<RecoverPasswordResponse> outputPort,
+    RecoverPasswordPresenter outputPort,
     SearchCompanyHandler searchCompanyHandler,
     CreateRequestRecoverPasswordHandler createRequestRecoverPasswordHandler,
     SendEmailRecoverPasswordHandler sendEmailRecoverPasswordHandler

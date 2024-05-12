@@ -1,3 +1,4 @@
+using Solidarize.Api.UseCases.Users.RequestRegisterCompany;
 using Solidarize.Application.Bundaries;
 using Solidarize.Application.Bundaries.RequestRegisterCompany;
 using Solidarize.Application.Interfaces.Repositories.Logs;
@@ -9,11 +10,11 @@ public class RequestRegisterCompanyUseCase : IRequestRegisterCompanyUseCase
 {
     private readonly ILogRepository logRepository;
     private readonly CreatePasswordEntityHandler createPasswordEntityHandler;
-    private readonly IOutputPort<RequestRegisterCompanyResponse> outputPort;
+    private readonly RequestRegisterCompanyPresenter outputPort;
 
     public RequestRegisterCompanyUseCase
     (ILogRepository logRepository, 
-    IOutputPort<RequestRegisterCompanyResponse> outputPort,
+    RequestRegisterCompanyPresenter outputPort,
     CreatePasswordEntityHandler createPasswordEntityHandler,
     CreateRequestCompanyEnitityHandler createRequestCompanyEnitityHandler,
     SendRequestCompanyEmailHandler sendRequestCompanyEmailHandler,

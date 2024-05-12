@@ -9,7 +9,7 @@ namespace Solidarize.Infraestructure.Services;
 
 public class TokenService : ITokenService
 {
-    public string Generate(string rule)
+    public string Generate(string rule, Guid IdUser)
     {
         var Secret = Environment.GetEnvironmentVariable("JWTSECRET");
         if (Secret == null)
@@ -23,7 +23,8 @@ public class TokenService : ITokenService
         {
             Subject = new ClaimsIdentity(new Claim[]
                 {
-                        new Claim("User_Rule", rule)
+                        new Claim("User_Rule", rule),
+                        new Claim("User_Id", IdUser.ToString())
                 }),
             Expires = DateTime.UtcNow.AddHours(tokenExpire != null ? int.Parse(tokenExpire) : 8),
             SigningCredentials = new SigningCredentials

@@ -12,29 +12,22 @@ using Solidarize.Application.Bundaries;
 using Solidarize.Api.Filters;
 using Solidarize.Application.UseCases.Users.Login;
 
-namespace Solidarize.Api.UseCases.Users.Login;
-
-public class Login
+namespace Solidarize.Api.UseCases.Users.VerifyToken;
+public class VerifyToken
 {
         private HttpRequestValidator httpRequestValidator { get; set; }
-        private LoginPresenter presenter;
         private readonly NotificationMiddleware middleware;
-        private readonly ILoginUseCase useCase;
 
-        public Login
+        public VerifyToken
         (HttpRequestValidator httpRequestValidator, 
-        LoginPresenter presenter, 
-        NotificationMiddleware middleware, 
-        ILoginUseCase useCase)
+        NotificationMiddleware middleware)
         {
-            httpRequestValidator.AddValidator(new BodyValidator<LoginRequest>());
+            httpRequestValidator.AddValidator(new AuthorizationValidator());
             this.httpRequestValidator = httpRequestValidator;
-            this.presenter = presenter;
             this.middleware = middleware;
-            this.useCase = useCase;
         }
 
-        [FunctionName("Login")]
+        [FunctionName("VerifyToken")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -43,14 +36,7 @@ public class Login
          {
              try
              {
-                 req.Body.Position = 0;
-                 var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-                 LoginRequest body = new();
-
-                 body = JsonConvert.DeserializeObject<LoginRequest>(requestBody!)!;
-
-                 useCase.Execute(new(body.Email, body.Password));
-                 return presenter.ViewModel;
+                 return new OkResult();
              }
              catch (Exception ex)
              {
@@ -59,5 +45,4 @@ public class Login
              }
          });
         }
-    
 }

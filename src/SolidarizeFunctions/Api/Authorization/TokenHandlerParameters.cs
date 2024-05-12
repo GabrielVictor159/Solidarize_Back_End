@@ -10,7 +10,7 @@ public static class TokenHandlerParameters
         return new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWTSECRET"))),
+            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWTSECRET")!)),
             ValidateIssuer = false,
             ValidateAudience = false,
             ValidateLifetime = true, 

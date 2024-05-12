@@ -1,3 +1,4 @@
+using Solidarize.Api.UseCases.Users.Login;
 using Solidarize.Application.Bundaries;
 using Solidarize.Application.Bundaries.Login;
 using Solidarize.Application.Interfaces.Repositories.Logs;
@@ -9,11 +10,11 @@ public class LoginUseCase : ILoginUseCase
 {
     private readonly ILogRepository logRepository;
     private readonly LoginDbHandler loginDbHandler;
-    private readonly IOutputPort<LoginResponse> outputPort;
+    private readonly LoginPresenter outputPort;
 
     public LoginUseCase
     (ILogRepository logRepository, 
-    IOutputPort<LoginResponse> outputPort,
+    LoginPresenter outputPort,
     LoginDbHandler loginDbHandler,
     GenerateTokenHandler generateTokenHandler
     )

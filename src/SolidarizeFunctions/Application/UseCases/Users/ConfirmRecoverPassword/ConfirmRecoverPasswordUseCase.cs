@@ -1,3 +1,4 @@
+using Solidarize.Api.UseCases.Users.ConfirmRecoverPassword;
 using Solidarize.Application.Bundaries;
 using Solidarize.Application.Bundaries.ConfirmRecoverPassword;
 using Solidarize.Application.Interfaces.Repositories.Logs;
@@ -9,14 +10,14 @@ public class ConfirmRecoverPasswordUseCase : IConfirmRecoverPasswordUseCase
 {
     private readonly ILogRepository logRepository;
     private readonly SearchRequestRecoverPasswordHandler searchRequestRecoverPasswordHandler;
-    private readonly IOutputPort<ConfirmRecoverPasswordResponse> outputPort;
+    private readonly ConfirmRecoverPasswordPresenter outputPort;
 
     public ConfirmRecoverPasswordUseCase
     (ILogRepository logRepository, 
     SearchRequestRecoverPasswordHandler searchRequestRecoverPasswordHandler,
     CreateNewPasswordHandler createNewPasswordHandler,
     SaveNewPasswordHandler saveNewPasswordHandler,
-    IOutputPort<ConfirmRecoverPasswordResponse> outputPort)
+    ConfirmRecoverPasswordPresenter outputPort)
     {
         searchRequestRecoverPasswordHandler
         .SetSucessor(createNewPasswordHandler

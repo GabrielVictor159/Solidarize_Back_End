@@ -3,6 +3,7 @@
     "Values": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-        "DBCONN":"Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres"
+        "DBCONN":"Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres",
+        "JWTSECRET":"secret"
     }
 }
