@@ -20,13 +20,13 @@ public class AuthorizationValidator : IHttpRequestValidator
     }
     public AuthorizationValidator(){}
 
-    public async Task<(bool, IActionResult?)> Validate(HttpRequest request)
+    public async Task<(bool, IActionResult?,List<Claim> Claims)> Validate(HttpRequest request)
     {
         try
         {
             if (!request.Headers.ContainsKey("Authorization"))
             {
-                return (false, new UnauthorizedObjectResult("The request does not contain the Authorization header"));
+                return (false, new UnauthorizedObjectResult("The request does not contain the Authorization header"), new());
             }
 
             string authorizationHeaderValue = request.Headers["Authorization"];
@@ -41,12 +41,12 @@ public class AuthorizationValidator : IHttpRequestValidator
                 }
                 catch (SecurityTokenException e)
                 {
-                    return (false, new UnauthorizedObjectResult($"There was a problem with user authentication. {e.Message}"));
+                    return (false, new UnauthorizedObjectResult($"There was a problem with user authentication. {e.Message}"), new());
                 }
 
                 if (claimsPrincipal.Identity?.IsAuthenticated != true)
                 {
-                    return (false, new UnauthorizedObjectResult($"The token is not a Valid Token"));
+                    return (false, new UnauthorizedObjectResult($"The token is not a Valid Token"), new());
                 }
                 var Result = new Tuple<bool,IActionResult?>(true,null);
                 foreach(var Rule in Rules)
@@ -68,11 +68,11 @@ public class AuthorizationValidator : IHttpRequestValidator
                    }
                 }
 
-            return (Result.Item1,Result.Item2);
+            return (Result.Item1,Result.Item2, claimsPrincipal.Claims.ToList());
         }
         catch
         {
-            return (false, new InternalServerErrorResult());
+            return (false, new InternalServerErrorResult(), new());
         }
     }
 }

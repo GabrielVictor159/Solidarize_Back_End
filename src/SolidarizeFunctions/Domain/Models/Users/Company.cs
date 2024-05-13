@@ -6,7 +6,7 @@ namespace Solidarize.Domain.Models.Users;
 public class Company : Entity<Company, CompanyValidator>
 {
     public Company(string companyName, string images, string icon, string description, LegalNature legalNature, string locationX, string locationY, bool banned, DateTime? banDate, DateTime? creationDate, DateTime? lastAccessDate, 
-    string cnpj, string address, string telefone, string email, Guid id, Guid idpassword, Password password)
+    string cnpj, string address, string telefone, string email, Guid id, Guid idpassword, Password? password)
     : base(new CompanyValidator())
     {
         CompanyName = companyName;
@@ -30,8 +30,8 @@ public class Company : Entity<Company, CompanyValidator>
     }
 
     public string CompanyName { get; private set; }
-    public string Images { get; private set; }
-    public string Icon { get; private set; }
+    public string Images { get; set; }
+    public string Icon { get; set; }
     public string Description { get; private set; }
     public LegalNature LegalNature { get; private set; }
     public string LocationX { get; private set; }
@@ -47,5 +47,5 @@ public class Company : Entity<Company, CompanyValidator>
     public Guid Id { get; private set; }
     public Guid Idpassword { get; private set; }
 
-    public Password Password { get; set; }
+    public Password? Password { get; set; }
 }

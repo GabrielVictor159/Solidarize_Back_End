@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Security.Claims;
 using System.Web.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ namespace Solidarize.Api.Validator.Http;
 
 public class BodyValidator<T> : IHttpRequestValidator
 {
-    public async Task<(bool, IActionResult?)> Validate(HttpRequest request)
+    public async Task<(bool, IActionResult?, List<Claim> Claims)> Validate(HttpRequest request)
 {
     try
     {
@@ -29,17 +30,17 @@ public class BodyValidator<T> : IHttpRequestValidator
 
         if (!isValid)
         {
-            return (false, new BadRequestObjectResult(validationResults));
+            return (false, new BadRequestObjectResult(validationResults), new());
         }
         else
         {
-            return (true, null);
+            return (true, null, new());
         }
     }
     catch (Exception e)
     {
         Console.WriteLine(e.Message);
-        return (false, new BadRequestObjectResult(e.Message));
+        return (false, new BadRequestObjectResult(e.Message), new());
     }
 }
 

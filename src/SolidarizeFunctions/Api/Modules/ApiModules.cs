@@ -5,6 +5,7 @@ using Solidarize.Api.Interface;
 using Solidarize.Api.UseCases.Users.ConfirmRecoverPassword;
 using Solidarize.Api.UseCases.Users.ConfirmRegisterCompany;
 using Solidarize.Api.UseCases.Users.Login;
+using Solidarize.Api.UseCases.Users.PatchCompany;
 using Solidarize.Api.UseCases.Users.RecoverPassword;
 using Solidarize.Api.UseCases.Users.RequestRegisterCompany;
 using Solidarize.Api.Validator.Http;
@@ -26,6 +27,7 @@ public class ApiModule : Module
         services.AddSingleton<RecoverPasswordPresenter>();
         services.AddSingleton<ConfirmRecoverPasswordPresenter>();
         services.AddSingleton<LoginPresenter>();
+        services.AddSingleton<PatchCompanyPresenter>();
     }
 
 }

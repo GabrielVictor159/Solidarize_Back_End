@@ -6,6 +6,7 @@ using Solidarize.Application.Interfaces.Services;
 using Solidarize.Application.UseCases.Users.ConfirmRecoverPassword.Modules;
 using Solidarize.Application.UseCases.Users.ConfirmRegisterCompany.Modules;
 using Solidarize.Application.UseCases.Users.Login.Modules;
+using Solidarize.Application.UseCases.Users.PatchCompany.Modules;
 using Solidarize.Application.UseCases.Users.RecoverPassword.Modules;
 using Solidarize.Application.UseCases.Users.RequestRegisterCompany;
 using Solidarize.Application.UseCases.Users.RequestRegisterCompany.Modules;
@@ -34,10 +35,12 @@ public class ApplicationModule : Module
         new RecoverPasswordModule().Configure(services);
         new ConfirmRecoverPasswordModule().Configure(services);
         new LoginModule().Configure(services);
+        new PatchCompanyModule().Configure(services);
     }
     private void AddServices(IServiceCollection services) 
     {
         services.AddSingleton<ITokenService, TokenService>();
+        services.AddSingleton<IImagesServices, ImagesServices>();
     }
     private void AddRepositories(IServiceCollection services) 
     {
