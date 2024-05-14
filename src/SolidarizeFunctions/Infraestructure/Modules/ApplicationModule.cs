@@ -41,6 +41,7 @@ public class ApplicationModule : Module
     {
         services.AddSingleton<ITokenService, TokenService>();
         services.AddSingleton<IImagesServices, ImagesServices>();
+        services.AddSingleton<IEmailService, EmailService>();
     }
     private void AddRepositories(IServiceCollection services) 
     {
