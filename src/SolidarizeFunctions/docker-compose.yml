@@ -16,3 +16,8 @@ services:
           memory: 125M
     ports:
       - 7071:80
+    networks:
+      - solidarize
+
+networks:
+  solidarize:

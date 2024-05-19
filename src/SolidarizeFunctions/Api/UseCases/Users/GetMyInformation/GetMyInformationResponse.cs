@@ -22,16 +22,28 @@ public class GetMyInformationResponse
             this.Id = bundaries.company.Id.ToString();
         };
     }
+    [JsonProperty("CompanyName")]
     public string? CompanyName { get; private set; }
+    [JsonProperty("Images")]
     public List<string>? Images { get; private set; }
+    [JsonProperty("Icon")]
     public string? Icon { get; private set; }
+    [JsonProperty("Description")]
     public string? Description { get; private set; }
+    [JsonProperty("LegalNature")]
     public string? LegalNature { get; private set; }
+    [JsonProperty("LocationX")]
     public string? LocationX { get; private set; }
+    [JsonProperty("LocationY")]
     public string? LocationY { get; private set; }
+    [JsonProperty("LastAccessDate")]
     public DateTime? LastAccessDate { get; private set; }
+    [JsonProperty("CNPJ")]
     public string? CNPJ { get; private set; }
+    [JsonProperty("Address")]
     public string? Address { get; private set; }
+    [JsonProperty("Email")]
     public string? Email { get; private set; }
+    [JsonProperty("Id")]
     public string? Id { get; private set; }
 }

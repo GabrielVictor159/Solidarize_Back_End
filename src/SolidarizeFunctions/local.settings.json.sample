@@ -6,6 +6,11 @@
         "DBCONN":"Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres",
         "JWTSECRET":"secret",
         "StorageAcountStringConection":"connectionstring",
-        "UserContainerBlobs":"user container images"
+        "UserContainerBlobs":"user container images",
+        "EMAIL_USERNAME":"emailteste@gmail.com",
+        "EMAIL_PASSWORD":"passwordEmail",
+        "SMTP_SERVER":"smtp.gmail.com",
+        "SMTP_PORT":"587",
+        "Front_URL":"www.google.com"
     }
 }
