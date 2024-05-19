@@ -5,6 +5,7 @@ using Solidarize.Application.Interfaces.Repositories.Users;
 using Solidarize.Application.Interfaces.Services;
 using Solidarize.Application.UseCases.Users.ConfirmRecoverPassword.Modules;
 using Solidarize.Application.UseCases.Users.ConfirmRegisterCompany.Modules;
+using Solidarize.Application.UseCases.Users.GetMyInformation.Modules;
 using Solidarize.Application.UseCases.Users.Login.Modules;
 using Solidarize.Application.UseCases.Users.PatchCompany.Modules;
 using Solidarize.Application.UseCases.Users.RecoverPassword.Modules;
@@ -36,6 +37,7 @@ public class ApplicationModule : Module
         new ConfirmRecoverPasswordModule().Configure(services);
         new LoginModule().Configure(services);
         new PatchCompanyModule().Configure(services);
+        new GetMyInformationModule().Configure(services);
     }
     private void AddServices(IServiceCollection services) 
     {

@@ -17,6 +17,8 @@ public enum UseCases
     [EnumMember(Value ="Login")]
     Login,
     [EnumMember(Value ="PatchCompany")]
-    PatchCompany
+    PatchCompany,
+    [EnumMember(Value ="GetMyInformation")]
+    GetMyInformation,
 
 }
