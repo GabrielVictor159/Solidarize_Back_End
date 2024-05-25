@@ -16,7 +16,7 @@ public class SendRequestCompanyEmailHandler : Handler<RequestRegisterCompanyRequ
     {
        request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType().FullName}");
        
-       emailService.SendEmail(request.Email,"Solidarize Confirmação de Usuário",ConfirmUserEmail.Email(Environment.GetEnvironmentVariable("Front_URL")!+$"/ConfirmUser/{request.RequestCompany!.Id}"));
+       emailService.SendEmail(request.Email,"Solidarize Confirmação de Usuário",ConfirmUserEmail.Email(Environment.GetEnvironmentVariable("Front_URL")!+$"/Register/{request.RequestCompany!.Id}"));
 
        sucessor?.ProcessRequest(request);
     }

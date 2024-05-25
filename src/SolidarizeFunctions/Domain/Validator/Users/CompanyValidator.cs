@@ -7,7 +7,9 @@ public class CompanyValidator : AbstractValidator<Company>
 {
     public CompanyValidator()
     {
-        RuleFor(company => company.CompanyName).NotEmpty().WithMessage("O nome da empresa é obrigatório.");
+        RuleFor(company => company.CompanyName)
+        .NotEmpty().WithMessage("O nome da empresa é obrigatório.")
+        .MinimumLength(4).WithMessage("O nome da empresa deve ter pelo menos 4 caracteres.");
 
         RuleFor(company => company.Description).NotEmpty().WithMessage("A descrição é obrigatória.");
 

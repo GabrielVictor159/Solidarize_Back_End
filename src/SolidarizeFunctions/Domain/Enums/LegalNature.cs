@@ -42,6 +42,12 @@ namespace Solidarize.Domain.Enums
         /// Cooperativa.
         /// </summary>
         [EnumMember(Value ="COOP")]
-        COOP
+        COOP,
+
+        /// <summary>
+        /// Organização sem fins lucrativos.
+        /// </summary>
+        [EnumMember(Value = "ONG")]
+        ONG
     }
 }
