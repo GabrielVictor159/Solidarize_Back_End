@@ -20,6 +20,7 @@ public class GetMyInformationResponse
             this.Address = bundaries.company.Address;
             this.Email = bundaries.company.Email;
             this.Id = bundaries.company.Id.ToString();
+            this.Telefone = bundaries.company.Telefone;
         };
     }
     [JsonProperty("CompanyName")]
@@ -44,6 +45,8 @@ public class GetMyInformationResponse
     public string? Address { get; private set; }
     [JsonProperty("Email")]
     public string? Email { get; private set; }
+    [JsonProperty("Telefone")]
+    public string? Telefone { get; private set; }
     [JsonProperty("Id")]
     public string? Id { get; private set; }
 }

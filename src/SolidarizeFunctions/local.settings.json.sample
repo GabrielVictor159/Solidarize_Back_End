@@ -12,5 +12,8 @@
         "SMTP_SERVER":"smtp.gmail.com",
         "SMTP_PORT":"587",
         "Front_URL":"www.google.com"
-    }
+    },
+    "Host": {
+    "CORS": "*"
+  }
 }
