@@ -20,5 +20,7 @@ public enum UseCases
     PatchCompany,
     [EnumMember(Value ="GetMyInformation")]
     GetMyInformation,
+    [EnumMember(Value ="GetProfile")]
+    GetProfile
 
 }

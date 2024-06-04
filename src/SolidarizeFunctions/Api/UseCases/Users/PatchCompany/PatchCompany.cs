@@ -48,7 +48,6 @@ public class PatchCompany
                  PatchCompanyRequest body = new();
 
                  body = JsonConvert.DeserializeObject<PatchCompanyRequest>(requestBody!)!;
-
                  useCase.Execute(
                     new 
                     (

@@ -18,7 +18,9 @@ public class ImagesServices : IImagesServices
         BlobContainerClient blobContainerClient = blobServiceClient.GetBlobContainerClient(Container);
         try
         {
-            byte[] imageBytes = Convert.FromBase64String(Blob);
+            string base64WithoutPrefix = Blob.Replace("data:image/jpeg;base64,", "").Replace("data:image/png;base64,", "");
+
+            byte[] imageBytes = Convert.FromBase64String(base64WithoutPrefix);
 
             BlobClient blobClient = blobContainerClient.GetBlobClient(Id.ToString());
             BlobHttpHeaders headers = new BlobHttpHeaders
