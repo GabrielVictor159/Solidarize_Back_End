@@ -21,6 +21,8 @@ public enum UseCases
     [EnumMember(Value ="GetMyInformation")]
     GetMyInformation,
     [EnumMember(Value ="GetProfile")]
-    GetProfile
+    GetProfile,
+    [EnumMember(Value ="GetAllUsers")]
+    GetAllUsers
 
 }

@@ -5,6 +5,7 @@ using Solidarize.Api.Interface;
 using Solidarize.Api.UseCases.Users.ConfirmRecoverPassword;
 using Solidarize.Api.UseCases.Users.ConfirmRegisterCompany;
 using Solidarize.Api.UseCases.Users.GetMyInformation;
+using Solidarize.Api.UseCases.Users.GetOngs;
 using Solidarize.Api.UseCases.Users.GetProfile;
 using Solidarize.Api.UseCases.Users.Login;
 using Solidarize.Api.UseCases.Users.PatchCompany;
@@ -32,6 +33,7 @@ public class ApiModule : Module
         services.AddSingleton<PatchCompanyPresenter>();
         services.AddSingleton<GetMyInformationPresenter>();
         services.AddSingleton<GetProfilePresenter>();
+        services.AddSingleton<GetOngsPresenter>();
     }
 
 }
