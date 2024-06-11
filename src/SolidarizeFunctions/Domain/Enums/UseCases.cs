@@ -23,6 +23,8 @@ public enum UseCases
     [EnumMember(Value ="GetProfile")]
     GetProfile,
     [EnumMember(Value ="GetAllUsers")]
-    GetAllUsers
+    GetAllUsers,
+    [EnumMember(Value ="GetCompanys")]
+    GetCompanys
 
 }

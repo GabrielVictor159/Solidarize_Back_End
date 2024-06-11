@@ -1,10 +1,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Solidarize.Application.Interfaces.Repositories.Chat;
 using Solidarize.Application.Interfaces.Repositories.Logs;
+using Solidarize.Application.Interfaces.Repositories.Shipping;
 using Solidarize.Application.Interfaces.Repositories.Users;
 using Solidarize.Application.Interfaces.Services;
 using Solidarize.Application.UseCases.Users.ConfirmRecoverPassword.Modules;
 using Solidarize.Application.UseCases.Users.ConfirmRegisterCompany.Modules;
+using Solidarize.Application.UseCases.Users.GetCompanys.Modules;
 using Solidarize.Application.UseCases.Users.GetMyInformation.Modules;
 using Solidarize.Application.UseCases.Users.GetOngs.Modules;
 using Solidarize.Application.UseCases.Users.GetProfile.Modules;
@@ -18,6 +20,7 @@ using Solidarize.Helpers;
 using Solidarize.Infraestructure.Database.Map.Users;
 using Solidarize.Infraestructure.Database.Repositories.Chat;
 using Solidarize.Infraestructure.Database.Repositories.Logs;
+using Solidarize.Infraestructure.Database.Repositories.Shipping;
 using Solidarize.Infraestructure.Database.Repositories.Users;
 using Solidarize.Infraestructure.Services;
 
@@ -42,6 +45,7 @@ public class ApplicationModule : Module
         new GetMyInformationModule().Configure(services);
         new GetProfileModule().Configure(services);
         new GetOngsModule().Configure(services);
+        new GetCompanysModule().Configure(services);
     }
     private void AddServices(IServiceCollection services) 
     {
@@ -58,5 +62,8 @@ public class ApplicationModule : Module
         services.AddSingleton<IRequestCompanyRepository, RequestCompanyRepository>();
         services.AddSingleton<ILogRepository, LogRepository>();
         services.AddSingleton<IRequestRecoverPasswordRepository, RequestRecoverPasswordRepository>();
+        services.AddSingleton<IAttachedFileRepository, AttachedFileRepository>();
+        services.AddSingleton<IMessageDiscutionRepository, MessageDiscutionRepository>();
+        services.AddSingleton<IShippingRepository, ShippingRepository>();
     }
 }

@@ -1,4 +1,5 @@
 using Solidarize.Domain.Enums;
+using Solidarize.Domain.Models.Shipping;
 using Solidarize.Domain.Validator.Users;
 
 namespace Solidarize.Domain.Models.Users;
@@ -48,4 +49,7 @@ public class Company : Entity<Company, CompanyValidator>
     public Guid Idpassword { get; private set; }
 
     public Password? Password { get; set; }
+    public virtual ICollection<MessageDiscution>? MessageDiscutions { get; set; }
+    public virtual ICollection<Shipping.Shipping>? ShippingIdUserCreationNavigations { get; set; }
+    public virtual ICollection<Shipping.Shipping>? ShippingIdUserResponseNavigations { get; set; }
 }

@@ -13,6 +13,8 @@ public class GetCompaniesDBHandler : Handler<GetOngsRequest>
 
     public override void ProcessRequest(GetOngsRequest request)
     {
+        request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType().FullName}");
+        
         request.Companies = companyRepository.GetByFilter((company)=>company.LegalNature==Domain.Enums.LegalNature.ONG);
         sucessor?.ProcessRequest(request);
     }

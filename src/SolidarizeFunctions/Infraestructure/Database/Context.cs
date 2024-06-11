@@ -3,9 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Solidarize.Infraestructure.Database.Entities;
 using Solidarize.Infraestructure.Database.Entities.Chat;
 using Solidarize.Infraestructure.Database.Entities.Logs;
+using Solidarize.Infraestructure.Database.Entities.Shipping;
 using Solidarize.Infraestructure.Database.Entities.Users;
 using Solidarize.Infraestructure.Database.Map.Chat;
 using Solidarize.Infraestructure.Database.Map.Logs;
+using Solidarize.Infraestructure.Database.Map.Shipping;
 using Solidarize.Infraestructure.Database.Map.Users;
 
 namespace Solidarize.Infraestructure.Database
@@ -28,6 +30,9 @@ namespace Solidarize.Infraestructure.Database
         public virtual DbSet<RequestCompany> RequestCompanies { get; set; }
         public virtual DbSet<Log> Logs {get;set;}
         public virtual DbSet<RequestRecoverPassword> RequestRecoverPasswords { get; set; }
+        public virtual DbSet<Shipping> Shippings { get; set; }
+        public virtual DbSet<AttachedFile> AttachedFiles { get; set; }
+        public virtual DbSet<MessageDiscution> MessageDiscutions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -50,6 +55,9 @@ namespace Solidarize.Infraestructure.Database
             modelBuilder.ApplyConfiguration(new RequestCompanyMap());
             modelBuilder.ApplyConfiguration(new LogMap());
             modelBuilder.ApplyConfiguration(new RequestRecoverPasswordMap());
+            modelBuilder.ApplyConfiguration(new ShippingMap());
+            modelBuilder.ApplyConfiguration(new MessageDiscutionMap());
+            modelBuilder.ApplyConfiguration(new AttachedFileMap());
             
             OnModelCreatingPartial(modelBuilder);
         }

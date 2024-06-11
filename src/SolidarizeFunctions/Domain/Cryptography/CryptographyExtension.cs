@@ -17,21 +17,21 @@ namespace Solidarize.Domain.Cryptography
             }
         }
 
-            public static int PasswordComplexityIndex(this string password)
-            {
-                int complexityIndex = 0;
+        public static int PasswordComplexityIndex(this string password)
+        {
+            int complexityIndex = 0;
 
-                complexityIndex += password.Length;
+            complexityIndex += password.Length;
 
-                if (System.Text.RegularExpressions.Regex.IsMatch(password, "[A-Z]")) complexityIndex += 5;
-                if (System.Text.RegularExpressions.Regex.IsMatch(password, "[a-z]")) complexityIndex += 5;
-                if (System.Text.RegularExpressions.Regex.IsMatch(password, "[0-9]")) complexityIndex += 5;
-                if (System.Text.RegularExpressions.Regex.IsMatch(password, "[^a-zA-Z0-9]")) complexityIndex += 5;
+            if (System.Text.RegularExpressions.Regex.IsMatch(password, "[A-Z]")) complexityIndex += 5;
+            if (System.Text.RegularExpressions.Regex.IsMatch(password, "[a-z]")) complexityIndex += 5;
+            if (System.Text.RegularExpressions.Regex.IsMatch(password, "[0-9]")) complexityIndex += 5;
+            if (System.Text.RegularExpressions.Regex.IsMatch(password, "[^a-zA-Z0-9]")) complexityIndex += 5;
 
-                if (System.Text.RegularExpressions.Regex.IsMatch(password, "(.)\\1{2,}")) complexityIndex -= 10;
-                if (System.Text.RegularExpressions.Regex.IsMatch(password, "123|321|abc|cba")) complexityIndex -= 10;
+            if (System.Text.RegularExpressions.Regex.IsMatch(password, "(.)\\1{2,}")) complexityIndex -= 10;
+            if (System.Text.RegularExpressions.Regex.IsMatch(password, "123|321|abc|cba")) complexityIndex -= 10;
 
-                return complexityIndex;
-            }
+            return complexityIndex;
         }
     }
+}

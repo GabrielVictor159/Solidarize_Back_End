@@ -4,6 +4,7 @@ using Solidarize.Api.Filters;
 using Solidarize.Api.Interface;
 using Solidarize.Api.UseCases.Users.ConfirmRecoverPassword;
 using Solidarize.Api.UseCases.Users.ConfirmRegisterCompany;
+using Solidarize.Api.UseCases.Users.GetCompanys;
 using Solidarize.Api.UseCases.Users.GetMyInformation;
 using Solidarize.Api.UseCases.Users.GetOngs;
 using Solidarize.Api.UseCases.Users.GetProfile;
@@ -34,6 +35,7 @@ public class ApiModule : Module
         services.AddSingleton<GetMyInformationPresenter>();
         services.AddSingleton<GetProfilePresenter>();
         services.AddSingleton<GetOngsPresenter>();
+        services.AddSingleton<GetCompanysPresenter>();
     }
 
 }
