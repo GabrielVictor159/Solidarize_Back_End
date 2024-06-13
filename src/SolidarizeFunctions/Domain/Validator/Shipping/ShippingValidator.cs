@@ -21,9 +21,11 @@ public class ShippingValidator : AbstractValidator<Models.Shipping.Shipping>
         .NotEmpty().WithMessage("A data de criação é obrigatória.");
 
         RuleFor(s => s.IdUserCreation)
-        .NotEmpty().WithMessage("O IdUserCreation da doação é obrigatório.");
+        .NotEmpty().WithMessage("O IdUserCreation da doação é obrigatório.")
+        .NotEqual(e=>e.IdUserResponse).WithMessage("O IdUserCreation e o IdUserResponse não podem ser iguais.");
 
         RuleFor(s => s.IdUserResponse)
-        .NotEmpty().WithMessage("O IdUserResponse da doação é obrigatório.");
+        .NotEmpty().WithMessage("O IdUserResponse da doação é obrigatório.")
+        .NotEqual(e=>e.IdUserCreation).WithMessage("O IdUserCreation e o IdUserResponse não podem ser iguais.");
     }
 }

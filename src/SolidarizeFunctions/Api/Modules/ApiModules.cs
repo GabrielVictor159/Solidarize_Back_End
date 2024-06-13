@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Solidarize.Api.Filters;
 using Solidarize.Api.Interface;
+using Solidarize.Api.UseCases.Shipping.CreateShipping;
+using Solidarize.Api.UseCases.Shipping.GetMyShippings;
 using Solidarize.Api.UseCases.Users.ConfirmRecoverPassword;
 using Solidarize.Api.UseCases.Users.ConfirmRegisterCompany;
 using Solidarize.Api.UseCases.Users.GetCompanys;
@@ -36,6 +38,8 @@ public class ApiModule : Module
         services.AddSingleton<GetProfilePresenter>();
         services.AddSingleton<GetOngsPresenter>();
         services.AddSingleton<GetCompanysPresenter>();
+        services.AddSingleton<CreateShippingPresenter>();
+        services.AddSingleton<GetMyShippingsPresenter>();
     }
 
 }

@@ -25,6 +25,10 @@ public enum UseCases
     [EnumMember(Value ="GetAllUsers")]
     GetAllUsers,
     [EnumMember(Value ="GetCompanys")]
-    GetCompanys
+    GetCompanys,
+    [EnumMember(Value ="CreateShipping")]
+    CreateShipping,
+    [EnumMember(Value ="GetMyShippings")]
+    GetMyShippings
 
 }

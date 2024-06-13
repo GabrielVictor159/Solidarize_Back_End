@@ -2,6 +2,8 @@ using System.Linq;
 using AutoMapper;
 using Azure;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Solidarize.Infraestructure.Database.Entities.Public;
 
 namespace Solidarize.Infraestructure.Database.Repositories;
 
@@ -62,6 +64,7 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         var existingEntity = context.Set<Entity>().Find(entity.GetType().GetProperty("Id")!.GetValue(entity));
         if (existingEntity != null)
         {
+            context.DeleteItems.Add(new(){CreationDate=DateTime.Now, Body=JsonConvert.SerializeObject(existingEntity), Entity = typeof(Entity).Name, Id= Guid.NewGuid()});
             context.Entry(existingEntity).CurrentValues.SetValues(entity);
             return context.SaveChanges();
         }
@@ -76,11 +79,13 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         var entities = mapper.Map<List<Entity>>(domains);
         int result = 0;
         List<Entity> entitiesNotFound = new List<Entity>();
+        List<DeleteItem> deleteItems = new();
         foreach (var entity in entities)
         {
             var existingEntity = context.Set<Entity>().Find(entity.GetType().GetProperty("Id")!.GetValue(entity));
             if (existingEntity != null)
             {
+                deleteItems.Add(new(){CreationDate=DateTime.Now, Body=JsonConvert.SerializeObject(existingEntity), Entity = typeof(Entity).Name, Id= Guid.NewGuid()});
                 context.Entry(existingEntity).CurrentValues.SetValues(entity);
                 result += context.SaveChanges();
             }
@@ -89,6 +94,7 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
                 entitiesNotFound.Add(entity);
             }
         }
+        context.DeleteItems.AddRange(deleteItems);
         return (result, mapper.Map<List<Domain>>(entitiesNotFound));
         }
     }
@@ -100,6 +106,7 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         var entity = context.Set<Entity>().Find(domain!.GetType().GetProperty("Id")!.GetValue(domain));
         if (entity != null)
         {
+            context.DeleteItems.Add(new(){CreationDate=DateTime.Now, Body=JsonConvert.SerializeObject(entity), Entity = typeof(Entity).Name, Id= Guid.NewGuid()});
             context.Set<Entity>().Remove(entity);
             return context.SaveChanges();
         }
@@ -114,11 +121,13 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         var entities = mapper.Map<List<Entity>>(domains);
         int result = 0;
         List<Entity> entitiesNotFound = new List<Entity>();
+        List<DeleteItem> deleteItems = new();
         foreach (var entity in entities)
         {
             var entitySearch = context.Set<Entity>().Find(entity.GetType().GetProperty("Id")!.GetValue(entity));
             if (entitySearch != null)
             {
+                deleteItems.Add(new(){CreationDate=DateTime.Now, Body=JsonConvert.SerializeObject(entitySearch), Entity = typeof(Entity).Name, Id= Guid.NewGuid()});
                 context.Set<Entity>().Remove(entitySearch);
                 result += context.SaveChanges();
             }
@@ -127,6 +136,7 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
                 entitiesNotFound.Add(entity);
             }
         }
+        context.DeleteItems.AddRange(deleteItems);
         return (result, mapper.Map<List<Domain>>(entitiesNotFound));
         }
     }

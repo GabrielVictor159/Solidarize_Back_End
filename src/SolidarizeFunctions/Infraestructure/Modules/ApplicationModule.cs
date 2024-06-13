@@ -4,6 +4,8 @@ using Solidarize.Application.Interfaces.Repositories.Logs;
 using Solidarize.Application.Interfaces.Repositories.Shipping;
 using Solidarize.Application.Interfaces.Repositories.Users;
 using Solidarize.Application.Interfaces.Services;
+using Solidarize.Application.UseCases.Shipping.CreateShipping.Modules;
+using Solidarize.Application.UseCases.Shipping.GetMyShippings.Modules;
 using Solidarize.Application.UseCases.Users.ConfirmRecoverPassword.Modules;
 using Solidarize.Application.UseCases.Users.ConfirmRegisterCompany.Modules;
 using Solidarize.Application.UseCases.Users.GetCompanys.Modules;
@@ -46,6 +48,8 @@ public class ApplicationModule : Module
         new GetProfileModule().Configure(services);
         new GetOngsModule().Configure(services);
         new GetCompanysModule().Configure(services);
+        new CreateShippingModule().Configure(services);
+        new GetMyShippingsModule().Configure(services);
     }
     private void AddServices(IServiceCollection services) 
     {
