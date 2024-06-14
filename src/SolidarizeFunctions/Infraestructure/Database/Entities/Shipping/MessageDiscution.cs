@@ -15,6 +15,7 @@ namespace Solidarize.Infraestructure.Database.Entities.Shipping
         public Guid IdShipping { get; set; }
         public string Message { get; set; } = null!;
         public Guid? IdUser { get; set; }
+        public DateTime CreationDate {get; set;}
 
         public virtual Shipping IdShippingNavigation { get; set; } = null!;
         public virtual Company? IdUserNavigation { get; set; }
