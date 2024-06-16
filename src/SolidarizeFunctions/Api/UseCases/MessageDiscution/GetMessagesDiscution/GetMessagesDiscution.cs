@@ -6,25 +6,24 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Solidarize.Api.Filters;
 using Solidarize.Api.Validator.Http;
-using Solidarize.Application.UseCases.Shipping.CreateMessageDiscution;
-using Solidarize.Domain.Models.Shipping;
+using Solidarize.Application.UseCases.Shipping.GetMessagesDiscution;
 
-namespace Solidarize.Api.UseCases.MessageDiscution.CreateMessageDiscution;
+namespace Solidarize.Api.UseCases.MessageDiscution.GetMessagesDiscution;
 
-public class CreateMessageDiscution
+public class GetMessagesDiscution
 {
     private HttpRequestValidator httpRequestValidator { get; set; }
-    private readonly CreateMessageDiscutionPresenter presenter;
+    private readonly GetMessagesDiscutionPresenter presenter;
     private readonly NotificationMiddleware middleware;
-    private readonly ICreateMessageDiscutionUseCase useCase;
+    private readonly IGetMessagesDiscutionUseCase useCase;
 
-    public CreateMessageDiscution
+    public GetMessagesDiscution
     (HttpRequestValidator validator, 
-    CreateMessageDiscutionPresenter presenter, 
+    GetMessagesDiscutionPresenter presenter, 
     NotificationMiddleware middleware, 
-    ICreateMessageDiscutionUseCase useCase)
+    IGetMessagesDiscutionUseCase useCase)
     {
-        validator.AddValidator(new BodyValidator<CreateMessageDiscutionRequest>());
+        validator.AddValidator(new BodyValidator<GetMessagesDiscutionRequest>());
         validator.AddValidator(new AuthorizationValidator());
 
         this.httpRequestValidator = validator;
@@ -33,7 +32,7 @@ public class CreateMessageDiscution
         this.useCase = useCase;
     }
 
-    [FunctionName("CreateMessageDiscution")]
+    [FunctionName("GetMessagesDiscution")]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
         ILogger log)
@@ -45,21 +44,11 @@ public class CreateMessageDiscution
             req.Body.Position = 0;
             var idUser = Guid.Parse(httpRequestValidator.Claims.Where(e=>e.Type=="User_Id").First().Value);
             var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            CreateMessageDiscutionRequest body = new();
+            GetMessagesDiscutionRequest body = new();
             
-            body = JsonConvert.DeserializeObject<CreateMessageDiscutionRequest>(requestBody!)!;
+            body = JsonConvert.DeserializeObject<GetMessagesDiscutionRequest>(requestBody!)!;
             
-            var IdMessage = Guid.NewGuid();
-            var attachedFiles = new List<AttachedFile>();
-            body.Files.ForEach(e=>{
-                attachedFiles.Add(new(Guid.NewGuid(),e.Item,e.Type,DateTime.Now,IdMessage));
-            });
-
-            useCase.Execute(new
-            (
-                new Domain.Models.Shipping.MessageDiscution(IdMessage,body.IdShipping,body.Message,idUser,DateTime.Now),
-                attachedFiles
-            ));
+            useCase.Execute(new(idUser,body.IdShipping));
 
             return presenter.ViewModel;
             }

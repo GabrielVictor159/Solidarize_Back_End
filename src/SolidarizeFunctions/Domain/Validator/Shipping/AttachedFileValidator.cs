@@ -16,8 +16,7 @@ public class AttachedFileValidator: AbstractValidator<Models.Shipping.AttachedFi
         .NotEmpty().WithMessage("O Id da mensagem do attached file é obrigatório.");
 
         RuleFor(s => s.Type)
-        .NotNull()
-        .NotEmpty().WithMessage("O type do attached file é obrigatório.");
+        .NotNull().WithMessage("O type do attached file é obrigatório.");
 
         RuleFor(s => s.CreationDate)
         .NotEmpty().WithMessage("A data de criação do attached file é obrigatório.");
