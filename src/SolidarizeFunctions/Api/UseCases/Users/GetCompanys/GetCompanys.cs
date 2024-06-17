@@ -44,7 +44,7 @@ public class GetCompanys
 
            body = JsonConvert.DeserializeObject<Solidarize.Api.UseCases.Users.GetCompanys.GetCompanysRequest>(requestBody!)!;
 
-           useCase.Execute(new(body.IdCompany,body.CompanyName,body.LegalNature,body.Cnpj,body.Telefone,body.Email));
+           useCase.Execute(new(body.IdCompany,body.CompanyName,body.LegalNature,body.Cnpj,body.Telefone,body.Email, body.IdsCompanys));
            return presenter.ViewModel;
        }
        catch (Exception ex)

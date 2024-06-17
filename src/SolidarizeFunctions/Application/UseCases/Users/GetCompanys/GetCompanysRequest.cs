@@ -6,7 +6,7 @@ namespace Solidarize.Application.UseCases.Users.GetCompanys;
 
 public class GetCompanysRequest
 {
-    public GetCompanysRequest(Guid? idCompany, string? companyName, LegalNature? legalNature, string? cnpj, string? telefone, string? email)
+    public GetCompanysRequest(Guid? idCompany, string? companyName, LegalNature? legalNature, string? cnpj, string? telefone, string? email, List<Guid>? idsCompanys)
     {
         IdCompany = idCompany;
         CompanyName = companyName;
@@ -14,8 +14,9 @@ public class GetCompanysRequest
         Cnpj = cnpj;
         Telefone = telefone;
         Email = email;
+        IdsCompanys = idsCompanys;
     }
-
+    public List<Guid>? IdsCompanys {get; private set;}
     public Guid? IdCompany {get; private set;}
     public string? CompanyName {get; private set;}
     public LegalNature? LegalNature { get; private set; }

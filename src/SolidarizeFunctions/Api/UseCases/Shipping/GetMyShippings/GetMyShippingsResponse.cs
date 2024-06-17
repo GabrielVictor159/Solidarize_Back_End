@@ -9,6 +9,8 @@ public class GetMyShippingsResponse
         this.Shippings.AddRange(
             getMyShippingsResponse.Shippings.Select(e => 
             new GetShippingsOutput(e.CreationDate,e.IdUserCreation,e.IdUserResponse,e.Description,e.Name,e.Id)));
+
+        this.Shippings = this.Shippings.OrderByDescending(e=>e.CreationDate).ToList();
     }
     public List<GetShippingsOutput> Shippings {get; private set;} = new();
 }

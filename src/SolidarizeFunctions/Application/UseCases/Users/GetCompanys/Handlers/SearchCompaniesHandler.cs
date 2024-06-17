@@ -16,6 +16,7 @@ public class SearchCompaniesHandler : Handler<GetCompanysRequest>
         request.AddLog(Domain.Enums.LogType.PROCESS, $"The process arrived at the handler {this.GetType().FullName}");
 
         request.Companies = companyRepository.GetByFilter(e =>
+            (request.IdsCompanys !=null ? request.IdsCompanys.Contains(e.Id) : true) &&
             (request.IdCompany != null ? e.Id.Equals(request.IdCompany) : true) &&
             (request.CompanyName != null ? e.CompanyName.ToLower().Contains(request.CompanyName.ToLower()) : true) &&
             (request.LegalNature != null ? e.LegalNature.Equals(request.LegalNature) : true) &&
