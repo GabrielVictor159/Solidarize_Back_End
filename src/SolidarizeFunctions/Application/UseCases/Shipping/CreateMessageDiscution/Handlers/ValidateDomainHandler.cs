@@ -33,6 +33,10 @@ public class ValidateDomainHandler : Handler<CreateMessageDiscutionRequest>
                 return;
             }
         });
+        if(request.AttachedFiles.Count>4){
+            notificationService.AddNotification("Must Items","O limite maximo de arquivos em uma mensagem é 4.");
+            return;
+        }
         saveAttachedFilesHandler.ProcessRequest(request);
         sucessor?.ProcessRequest(request);
     }
