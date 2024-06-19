@@ -10,7 +10,7 @@ public class GetMessagesDiscutionResponse
         boundaries.MessageDiscutions.ForEach(e =>
         {
             var a = new MessageDiscutionOutput(e.Id, e.Message, e.IdShipping, e.IdUser ?? Guid.NewGuid(), e.CreationDate);
-            a.AttachedFiles.AddRange(e.AttachedFiles != null ? e.AttachedFiles.Select(z => new FilesResponse(z.Item, z.Type, z.CreationDate, z.IdMessageDiscution)): []);
+            a.AttachedFiles.AddRange(e.AttachedFiles != null ? e.AttachedFiles.Select(z => new FilesResponse(z.Item, z.Type, z.CreationDate, z.IdMessageDiscution)): new List<FilesResponse>());
             MessageDiscutions.Add(a);
         });
         this.MessageDiscutions = this.MessageDiscutions.OrderByDescending(e=>e.CreationDate).ToList();
