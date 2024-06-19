@@ -40,7 +40,10 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDS_FUNCTION_APP }}
 
-      - name: Publish Azure Function App
-        run: func azure functionapp publish solidarize
-        working-directory: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'  
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        with:
+          app-name: 'solidarize'
+          slot-name: 'Production'
+          package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
           
