@@ -42,6 +42,7 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID}}
           creds: ${{ secrets.AZUREAPPSERVICE_CLIENTSECRET }}
+          debug: true
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
